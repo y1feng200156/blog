@@ -7,6 +7,7 @@ machine:
 
 dependencies:
   pre:
+    - chmod -R 777 ./bin
     - ./bin/setup
 
 test:
