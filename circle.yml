@@ -1,0 +1,15 @@
+machine:
+  environment:
+    USER_NAME: y1feng200156
+    USER_EMAIL: charles.tanchao@gmail.com
+  ruby:
+    version: 2.3.1
+
+dependencies:
+  pre:
+    - ./bin/setup
+
+test:
+  post:
+    - bundle exec jekyll build
+    - bundle exec htmlproofer ./_site --only-4xx --allow-hash-href --assume-extension --check-opengraph --url-ignore "feed.xml"
