@@ -28,3 +28,13 @@ $(":radio[checked]").val()
 {% endhighlight %}
 
 能取到选中项的 `value`，但通过测试后发现，只有 IE 下有效，在 FireFox 与 Chrome 中不论选中哪一项，或不选，取到的值都是第一项的 `value`。
+
+## 正解
+
+{% highlight javaScript%}
+$(":radio:checked").val()
+{% endhighlight %}
+
+## 扩展
+
+同样这种写法也可以用于 `checkbox` 上。
