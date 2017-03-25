@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Charles | 正确的 jQuery 获取 radio 选中值的写法</title>
+  <meta name="description" content="如何正确的获取 radio 的值。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="正确的 jQuery 获取 radio 选中值的写法">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://charles.party/posts/get-radio-value">
+  <meta property="og:description" content="如何正确的获取 radio 的值。">
+  <meta property="og:site_name" content="Charles">
+  <meta property="og:image" content="http://charles.party/assets/documentation/sample-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="http://charles.party/posts/get-radio-value">
+  <meta name="twitter:title" content="正确的 jQuery 获取 radio 选中值的写法">
+  <meta name="twitter:description" content="如何正确的获取 radio 的值。">
+  <meta name="twitter:image" content="http://charles.party/assets/documentation/sample-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="http://charles.party/feed.xml" type="application/rss+xml" rel="alternate" title="Charles Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Charles">Charles</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="https://twitter.com/Charlestamchao" target="_blank" title="Twitter">
+          <span class="icon icon-social-twitter"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/y1feng200156" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:charles.tanchao@gmail.com" target="_blank" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>正确的 jQuery 获取 radio 选中值的写法</h1>
+            <p>如何正确的获取 radio 的值。</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                November 28, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  1 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/jquery">jquery</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p>先看下面一段代码</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;label&gt;&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radio"</span> <span class="na">value=</span><span class="s">"1"</span> <span class="na">checked=</span><span class="s">"true"</span> <span class="nt">/&gt;</span> raio1<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;label&gt;&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radio"</span> <span class="na">value=</span><span class="s">"2"</span> <span class="nt">/&gt;</span> radio2 <span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;label&gt;&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radio"</span> <span class="na">value=</span><span class="s">"3"</span> <span class="nt">/&gt;</span> radio3 <span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">value=</span><span class="s">"ok"</span> <span class="na">onclick=</span><span class="s">"doChecked()"</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">language=</span><span class="s">"JavaScript"</span><span class="nt">&gt;</span>
+<span class="kd">function</span> <span class="nx">doChecked</span><span class="p">(){</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">":radio[checked]"</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></figure>
+
+<p>网上流行的说法就是</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s2">":radio[checked]"</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span></code></pre></figure>
+
+<p>能取到选中项的 <code class="highlighter-rouge">value</code>，但通过测试后发现，只有 IE 下有效，在 FireFox 与 Chrome 中不论选中哪一项，或不选，取到的值都是第一项的 <code class="highlighter-rouge">value</code>。</p>
+
+<h2 id="正解">正解</h2>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s2">":radio:checked"</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span></code></pre></figure>
+
+<h2 id="扩展">扩展</h2>
+
+<p>同样这种写法也可以用于 <code class="highlighter-rouge">checkbox</code> 上。</p>
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=正确的 jQuery 获取 radio 选中值的写法 - http://charles.party/posts/get-radio-value by @Charlestamchao', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://charles.party/posts/get-radio-value', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=http://charles.party/posts/get-radio-value', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    Charles Blog
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-53681429-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Charles | 在 form 表单内无法用 JS 提交表单</title>
+  <meta name="description" content="有时在 form 表单内无法用 JS 提交表单，接下来看下原因。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="在 form 表单内无法用 JS 提交表单">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://charles.party/posts/from-submit">
+  <meta property="og:description" content="有时在 form 表单内无法用 JS 提交表单，接下来看下原因。">
+  <meta property="og:site_name" content="Charles">
+  <meta property="og:image" content="http://charles.party/assets/documentation/sample-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="http://charles.party/posts/from-submit">
+  <meta name="twitter:title" content="在 form 表单内无法用 JS 提交表单">
+  <meta name="twitter:description" content="有时在 form 表单内无法用 JS 提交表单，接下来看下原因。">
+  <meta name="twitter:image" content="http://charles.party/assets/documentation/sample-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="http://charles.party/feed.xml" type="application/rss+xml" rel="alternate" title="Charles Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Charles">Charles</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="https://twitter.com/Charlestamchao" target="_blank" title="Twitter">
+          <span class="icon icon-social-twitter"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/y1feng200156" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:charles.tanchao@gmail.com" target="_blank" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>在 form 表单内无法用 JS 提交表单</h1>
+            <p>有时在 form 表单内无法用 JS 提交表单，接下来看下原因。</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                November 28, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  1 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/jquery">jquery</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <h2 id="现象">现象</h2>
+
+<p>　　在使用 JS or jQuery 提交表单时，表单内含有 <code class="highlighter-rouge">id="submit"</code> 或者 <code class="highlighter-rouge">name="submit"</code> 元素时，使用 <code class="highlighter-rouge">$('form').submit()</code> 提交表单时，表单没有工作。</p>
+
+<p>　　这时使用 <code class="highlighter-rouge">document.form.submit()</code>，浏览器出现 <code class="highlighter-rouge">Uncaught Type Error: document.getElementById(...).submit is not a function</code> 错误。</p>
+
+<h2 id="解决办法">解决办法</h2>
+
+<p>　　在表单内不能出现 <code class="highlighter-rouge">id="submit"</code> 或 <code class="highlighter-rouge">name="submit"</code> 的元素。</p>
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=在 form 表单内无法用 JS 提交表单 - http://charles.party/posts/from-submit by @Charlestamchao', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://charles.party/posts/from-submit', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=http://charles.party/posts/from-submit', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    Charles Blog
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-53681429-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Charles | 安装 chocolatey 出现的问题</title>
+  <meta name="description" content="安装 chocolatey 出现‘因为在此系统中禁止执行脚本’错误。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="安装 chocolatey 出现的问题">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://charles.party/posts/choco-install">
+  <meta property="og:description" content="安装 chocolatey 出现‘因为在此系统中禁止执行脚本’错误。">
+  <meta property="og:site_name" content="Charles">
+  <meta property="og:image" content="http://charles.party/assets/documentation/sample-image.jpg">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="http://charles.party/posts/choco-install">
+  <meta name="twitter:title" content="安装 chocolatey 出现的问题">
+  <meta name="twitter:description" content="安装 chocolatey 出现‘因为在此系统中禁止执行脚本’错误。">
+  <meta name="twitter:image" content="http://charles.party/assets/documentation/sample-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="http://charles.party/feed.xml" type="application/rss+xml" rel="alternate" title="Charles Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/light.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Charles">Charles</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="https://twitter.com/Charlestamchao" target="_blank" title="Twitter">
+          <span class="icon icon-social-twitter"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/y1feng200156" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:charles.tanchao@gmail.com" target="_blank" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>安装 chocolatey 出现的问题</h1>
+            <p>安装 chocolatey 出现‘因为在此系统中禁止执行脚本’错误。</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                December 2, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  1 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/system">system</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p>　　看见一个 windows 下类似 brew 管理的工具，不过这个工具开源版本是有限制，比如自定义安装目录，就只有收费的版本才有。具体不同版本之间的对比可以到官方<a href="https://chocolatey.org/pricing">这里</a>去查看。</p>
+
+<h2 id="安装-chocolatey">安装 chocolatey</h2>
+
+<p>　　<a href="https://chocolatey.org/install">官方</a>有教程教如何安装，都挺简单的，只是在安装过程中出现了一个问题，所有的脚本执行要在 system 权限下。我使用的是第三个脚本方式安装，如下：</p>
+
+<p>PowerShell v3+ (Ensure Get-ExecutionPolicy is at least RemoteSigned)</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex</code></pre></figure>
+
+<p>　　执行后出现以下错：</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">无法加载文件 <span class="k">******</span>.ps1，因为在此系统中禁止执行脚本。有关详细信息，请参阅 <span class="s2">"get-help about_signing"</span>。 
+所在位置 行:1 字符: 17 
++ E:<span class="se">\T</span>est<span class="se">\t</span>est.ps1 <span class="o">&lt;&lt;&lt;</span>&lt; 
+    + CategoryInfo          : NotSpecified: <span class="o">(</span>:<span class="o">)</span> <span class="o">[]</span>, PSSecurityException 
+    + FullyQualifiedErrorId : RuntimeException</code></pre></figure>
+
+<p>　　这个问题其实在网上已经有了解决方案，<a href="http://www.cnblogs.com/zhaozhan/archive/2012/06/01/2529384.html">这个博客</a>已经提供了解决方案。下面就记录下最终解决方案。</p>
+
+<p>　　在 PowerShell 中执行 <code class="highlighter-rouge">set-ExecutionPolicy RemoteSigned</code>，再执行开始安装 chocolatey 的脚本，就能安装成功了。</p>
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=安装 chocolatey 出现的问题 - http://charles.party/posts/choco-install by @Charlestamchao', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://charles.party/posts/choco-install', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=http://charles.party/posts/choco-install', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    Charles Blog
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-53681429-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

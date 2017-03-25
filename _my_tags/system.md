@@ -1,4 +1,0 @@
----
-slug: system
-name: System
----

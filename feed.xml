@@ -1,20 +1,58 @@
----
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>{{ site.name | xml_escape }}</title>
-    <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
-    <link>{{ site.url }}</link>
-    <atom:link href="{{ page.path | absolute_url }}" rel="self" type="application/rss+xml" />
-    {% for post in site.posts limit:10 %}
+    <title>Charles</title>
+    <description></description>
+    <link>http://charles.party</link>
+    <atom:link href="http://charles.party/feed.xml" rel="self" type="application/rss+xml" />
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.description | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | absolute_url }}</link>
-        <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
+        <title>安装 chocolatey 出现的问题</title>
+        <description>安装 chocolatey 出现‘因为在此系统中禁止执行脚本’错误。</description>
+        <pubDate>Fri, 02 Dec 2016 00:00:00 +0000</pubDate>
+        <link>http://charles.party/posts/choco-install</link>
+        <guid isPermaLink="true">http://charles.party/posts/choco-install</guid>
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>正确的 jQuery 获取 radio 选中值的写法</title>
+        <description>如何正确的获取 radio 的值。</description>
+        <pubDate>Mon, 28 Nov 2016 00:00:00 +0000</pubDate>
+        <link>http://charles.party/posts/get-radio-value</link>
+        <guid isPermaLink="true">http://charles.party/posts/get-radio-value</guid>
+      </item>
+    
+      <item>
+        <title>在 form 表单内无法用 JS 提交表单</title>
+        <description>有时在 form 表单内无法用 JS 提交表单，接下来看下原因。</description>
+        <pubDate>Mon, 28 Nov 2016 00:00:00 +0000</pubDate>
+        <link>http://charles.party/posts/from-submit</link>
+        <guid isPermaLink="true">http://charles.party/posts/from-submit</guid>
+      </item>
+    
+      <item>
+        <title>Introducing chalk</title>
+        <description>Chalk is a high quality, completely customizable, performant and 100% free blog template for Jekyll.</description>
+        <pubDate>Mon, 17 Oct 2016 00:00:00 +0000</pubDate>
+        <link>http://charles.party/posts/introducing-chalk</link>
+        <guid isPermaLink="true">http://charles.party/posts/introducing-chalk</guid>
+      </item>
+    
+      <item>
+        <title>How to configure Chalk</title>
+        <description>Learn more about the config file for Chalk and how to set it up properly.</description>
+        <pubDate>Sun, 16 Oct 2016 00:00:00 +0000</pubDate>
+        <link>http://charles.party/posts/configuring-chalk</link>
+        <guid isPermaLink="true">http://charles.party/posts/configuring-chalk</guid>
+      </item>
+    
+      <item>
+        <title>Chalk sample post with all elements</title>
+        <description>Have a look at all the predesigned elements you can use in Chalk.</description>
+        <pubDate>Sat, 15 Oct 2016 00:00:00 +0000</pubDate>
+        <link>http://charles.party/posts/chalk-sample-post-with-all-elements</link>
+        <guid isPermaLink="true">http://charles.party/posts/chalk-sample-post-with-all-elements</guid>
+      </item>
+    
   </channel>
 </rss>
